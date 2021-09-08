@@ -1,6 +1,7 @@
 package ru.zderev.sport.core.player;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.zderev.sport.core.history.HistoryService;
 import ru.zderev.sport.core.player.convertor.PlayerToPlayerViewConverter;
@@ -56,8 +57,8 @@ public class PlayerService {
         return playerRepo.save(player);
     }
 
-    public List<Player> findAll() {
-        return playerRepo.findAll();
+    public List<Player> findAll(Pageable pageable) {
+        return playerRepo.findAll(pageable.getSort());
     }
 
     public Player findById(Long id) {

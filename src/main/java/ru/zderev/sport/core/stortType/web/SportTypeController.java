@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.zderev.sport.core.stortType.SportType;
 import ru.zderev.sport.core.stortType.SportTypeService;
 import ru.zderev.sport.core.stortType.convertor.SportTypeToSportTypeViewConverter;
-
-import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 

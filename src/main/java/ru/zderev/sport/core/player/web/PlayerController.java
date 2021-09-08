@@ -1,6 +1,9 @@
 package ru.zderev.sport.core.player.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import ru.zderev.sport.core.player.Player;
 import ru.zderev.sport.core.player.PlayerService;
@@ -29,7 +32,9 @@ public class PlayerController  {
             @RequestParam(required = false) Long teamId,
             @RequestParam(required = false) Long sportTypeId,
             @RequestParam(required = false) String firstData,
-            @RequestParam(required = false) String lastData) {
+            @RequestParam(required = false) String lastData,
+            @PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable
+    ) {
         if(teamId != null) {
             return playerService.findAllByTeamId(teamId)
                     .stream()
@@ -46,7 +51,7 @@ public class PlayerController  {
                     .map(PlayerToPlayerViewConverter::playerToView)
                     .collect(Collectors.toList());
         }
-        return playerService.findAll()
+        return playerService.findAll(pageable)
                 .stream()
                 .map(PlayerToPlayerViewConverter::playerToView)
                 .collect(Collectors.toList());
