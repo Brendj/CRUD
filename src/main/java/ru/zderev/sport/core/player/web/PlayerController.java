@@ -23,8 +23,8 @@ public class PlayerController  {
     }
 
     @PostMapping
-    public void create(@RequestBody PlayerView playerDto) {
-        playerService.create(playerDto.getName(), playerDto.getFirstData(), playerDto.getLastData(), playerDto.getTeamId(), playerDto.getSportTypeId());
+    public void create(@RequestBody PlayerView playerView) {
+        playerService.create(playerView.getName(), playerView.getFirstData(), playerView.getLastData(), playerView.getTeamId(), playerView.getSportTypeId());
     }
 
     @GetMapping
